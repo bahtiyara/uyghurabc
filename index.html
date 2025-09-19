@@ -6,17 +6,24 @@
 			content="initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
 		/>
 		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-
 		<title>维语字母表</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-		<link rel="shortcut icon" href="/uyghurabc/png/icon.ico" />
-		<link
-			rel="apple-touch-icon"
-			href="/uyghurabc/png/apple-touch-icon.png"
-		/>
+		<link rel="shortcut icon" href="./png/icon.ico" />
+		<link rel="apple-touch-icon" href="./png/apple-touch-icon.png" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<style>
+			:root {
+				--color-f1: #000;
+				--color-b1: #fff;
+			}
+
+			@media (prefers-color-scheme: dark) {
+				:root {
+					--color-f1: #fff;
+					--color-b1: #000;
+				}
+			}
+
 			html,
 			body,
 			ul {
@@ -30,16 +37,25 @@
 				align-items: center;
 				font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
 				padding-bottom: env(safe-area-inset-bottom);
+				background-color: var(--color-b1);
+				color: var(--color-f1);
 			}
 
 			ul {
 				padding: 8px;
 				display: flex;
+				flex-direction: row-reverse;
 				flex-wrap: wrap;
 				justify-content: center;
-				align-items: center;
 				gap: 8px;
 				max-width: 800px;
+				align-items: flex-end;
+			}
+
+			@media (prefers-color-scheme: dark) {
+				li {
+					filter: invert(1);
+				}
 			}
 
 			li {
@@ -56,51 +72,22 @@
 			}
 		</style>
 	</head>
-	<body>
+	<body theme="light">
 		<h2>维语字母表</h2>
-		<ul>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
 	</body>
 	<script>
-		let elements = document.getElementsByTagName("li")
-		for (let i = 0; i < elements.length; i++) {
-			elements[i].style.backgroundImage = `url(png/${i + 1}.png)`
-			elements[i].onclick = function () {
-				var audio = new Audio(`mp3/${i + 1}.mp3`)
+		var ul = document.createElement("ul")
+
+		for (let i = 1; i < 33; i++) {
+			var li = document.createElement("li")
+			li.style.backgroundImage = `url(./png/${i}.png)`
+			li.onclick = function () {
+				var audio = new Audio(`mp3/${i}.mp3`)
 				audio.play()
 			}
+			ul.appendChild(li)
 		}
+
+		document.body.appendChild(ul)
 	</script>
 </html>
