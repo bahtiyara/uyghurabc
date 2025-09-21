@@ -67,8 +67,10 @@
 				transition-timing-function: ease-in-out;
 			}
 
-			li:hover {
-				filter: brightness(0.94);
+			@media (hover: hover) {
+				li:hover {
+					filter: brightness(0.94);
+				}
 			}
 
 			li.loading {
